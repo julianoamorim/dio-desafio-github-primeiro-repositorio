@@ -1,0 +1,508 @@
+-------------------------------------------------------------- GITHUB --------------------------------------------------------------------
+
+ - Principais comandos Terminal Windows/Linux:
+	* dir/ls : Lista os diretorios e arquivos no diretorio atual
+	* cls/clear: Limpa o terminal
+	* mkdir/mkdir: Cria uma nova pasta
+	* echo arquivo.txt: Cria um novo arquivo
+	* rmdir: remove uma pasta
+
+ - Security Hash Algorithm(sha1): Criptografia (40 digitos) usada no Git
+
+ - Chave SSH: Necessario para usar o GitHub
+
+ - Ciclo de Vida Git
+	* Untracked: adiciona arquivo (git add)
+	* Unmodified: arquivo sem modificacao com a referencia
+	* Modified: arquivo modificado com a referencia
+	* Staged: Arquivos prontos para serem enviados ao repositorio Git/GitHub (git commit), gera um novo sha1
+
+ - Quando 2 ou mais pessoas estao usando o mesmo repositorio, p1 faz um 'push' atualizando o original, p2 faz um 'push' logo depois, p2 precisa
+   faz um 'pull' do repositorio com as mudancas feitas por p1 com as mudancas e depois faz o seu push para o repositorio na Nuvem
+
+----------------------------------------------------------- INTRODUCAO ------------------------------------------------------------------
+
+ - .NET: Plataforma de desenvolvimento de codigo aberto unificado na construcao de aplicacoes. E programado em linguagem C#
+
+ - .NET framework x .NET (Core): .NET framework e a versao legada, funciona apenas em Windows, ja e instaldo nativamente, .NET (Core) e 
+   a nova versao do .NET que e multiplataforma, isso barateia o uso de servidores por poder usar Servidores Linux
+
+ - Sua primeira versao foi lancada em 2002, a versao legada (framework) foi descontinuada na versao .NET 4.8
+
+ - A programacao do .NET e feita em C#, q e uma linguagem compilada, que gera uma Linguagem Intermediaria (.exe, .dll)
+
+ - Extensoes recomendadas: C#[microsoft], C#Extensions[JosKreativ], VSCode-Solutions
+
+ - COMPILADOR: Programa q realiza a conversao de uma linguagem de alto nivel p baixo nivel (codigo da maquina). Ex: C#, Java
+ - TRANSPILADOR: Programa q realiza conversao de uma linguagem de alto nivel p outra de alto nivel. Ex: Typescript/Javascript, .NET/C#
+
+ - Criar projeto .NET
+	* Terminal: dotnet new console [--framework net5.0]
+	* Arquivos do projeto: Program.cs (arquivo de programacao), arquivo.csproj (Metadados em xml), pasta obj e bin (arquivos de debug)
+
+	* Modelo de Classe:
+	***********************************************************
+	using System; [modulo q o programa usara]
+
+	namespace projeto.pasta [Nome do Modulo da Classe, nao representa o caminho fisico]
+	{
+    	  public class Pessoa
+    		{
+        	  public string Nome {get; set;}  [propriedade]
+        	  public int Idade  {get; set;}
+
+        	  public void Apresentar(){
+            		Console.WriteLine($"Olá! Meu nome é {Nome}, minha idade é {Idade}");
+        	  }
+    	  }
+	}
+	*************************************************************
+	-Program.cs
+	using fundamentos.models; [chama o modulo da classe]
+
+	Pessoa p1 = new Pessoa();
+	p1.Nome = "Juliano";
+	p1.Idade = 32;
+	p1.Apresentar();
+
+	**************************************************************
+	* Terminal: dotnet run [na pasta do projeto]
+
+ - Convencoes do codigo: Atributos, Classes e Metodos sao PascalCase, objetos sao camelCase, nao se recomenda abreviar seus nomes, seguir
+   as convencoes ajuda na legibilidade do seu codigo. Cada linguagem possue sua propria convencao
+
+ - Desativar Warnigs(amarelo) do codigo: projeto.csproj -> <Nullable>disable</Nullable>
+
+ ----------------------------------------------- OPERADORES ------------------------------------------------------------
+
+ - Convertendo variaveis(Casting): Usar o metodo "Convert". Ex: int a = Convert.ToInt32("5") 
+				 : Usar o metodo "Parse". Ex: int b = int.Parse("7")
+				 : Convert -> null = 0 [mais adequado/programa nao encerra] / Parse -> null = error
+
+ - Convertendo ToString(): Todos os objetos em C# possuem o metodo ToString()
+
+ - Debugando no VSCode: Selecionar ate a linha p parar e depurar. Apertar F5. Possivel ver o valor das variaveis executadas,
+   selecionando "StepOver" pula para prox linha
+
+------------------------------------------------- CLASSE MATTH -------------------------------------------------------
+
+ - Math.pow(x,y) - double
+ - Math.PI = 3,14
+   radiano = angulo * Math.PI / 180
+ - Math.sin(radiano)
+ - Math.sqrt(x) - double
+
+ - Declarando decimal: 
+	* decimal valor = 82.40M
+
+ - Declarando double
+	* double valor = 0.82;
+
+---------------------------------------------- ORGANIZACAO PROJETO C# -------------------------------------------------------
+
+ - Arquivos principais: .csproj (informacoes referentes ao projeto, build, debug, versao), .sln (informacoes que carregam
+   um agrupamento do projeto) 
+
+ - Tentar reutilizar a mesma classe para diferentes projetos
+
+ - Criar agrupamento de projetos: Utilizar a extensao vscode-solutions, que cria um arquivo solution (.sln) 
+   p/ executar automaticamente o dotnet. E necessario adicionar o .csjproj (equivalente ao xml) dentro do .sln
+	* Extensao vscode-solutions -> create new solution [ExFundamentos] -> add project [fundamentos] ->
+	  -> create new project [class project/ExemploFundamentos.Common]
+	* Em fundamentos -> add reference [reconhece o projeto fundamentos.common]
+
+ - Dentro do arquivo solution [.sln] esta a referencia de todos os projetos referenciados, no caso fundamentos e 
+   fundamentos.common
+
+ - No DOTNET6 a classe principal (Program.cs) nao e necessario declarar o metodo Main
+
+----------------------------------------------- ARRAY / LISTA ------------------------------------------------------------------
+
+ - Array: Estrutura de dado que armazena valores de um mesmo tipo, com um tamanho fixo
+	* int[] vetor = new int[]{34,12,76,90}
+	* vetor[0] = 99 (muda o primeiro valor)
+
+ - FOREACH: Laco de repeticao para array/colecoes, simplificando o laco de repeticao, nao possui um contador por padrao
+	* foreach (var item in vetores){
+    	     Console.WriteLine(item);
+	  }
+
+ - Redimensionar array em execucao: Array.Resize(ref vetor, novoTamanho)
+ - Listas: conjunto de valores com tamanho nao definido (diferente do array). Sempre dar preferencia a Lista no lugar de Array
+
+
+
+---------------------------------------------------- PROPRIEDADES -------------------------------------------------------------
+
+ - Propriedade: E um membro que oferece um mecanismo flexivel para ler, gravar ou calcular o valor de um campo particular, possuem
+		get/set
+	Ex: public string Nome {get; set;}  
+       	    public int Idade  {get; set;}
+
+ - Permitir propriedades vazias: no arquivo .csproj -> alterar para <Nullable>disable</Nullable>
+
+ - Validacao de metodo: Restrigir os valores dos atributos de um metodos usando get/set
+	*  private string _nome;
+           public string Nome { 
+            	get{
+                   return _nome.ToUpper();
+            	}
+            	set{
+                    if(value == ""){
+                        throw new ArgumentException("O nome nao pode ser vazio");
+                   }
+                   _nome = value;
+            	} 
+            }
+
+ - *Body Expression*: get => _nome.ToUpper(); [Simplifica o metodo get]
+
+ - Metodos: E um bloco de codigo que contem uma serie de instrucoes, intuito de evitar repeticao de codigo
+
+ - Construtores: Permitem que o programador defina valores padrao, limite e instaciacao gravando codigos flexiveis e faceis de ler
+
+ --------------------------------------------------- MANIPULANDO VALORES --------------------------------------------------------------------
+
+ - Transformar um tipo de dado em outro tipo de dado
+
+ - Formatar p valor monetario do sistema [R$] : Console.WriteLine($"{variavel:C2}"); -> C2: Currencie 2 casas decimais
+	* Mudar a localizacao monetaria
+		using System.Globalization;
+		CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+
+ - Declarando %:
+	* double porcentagem = 0.82;
+	  Console.WriteLine(porcentagem.ToString("P2"));
+
+ - Convertendo data e validando
+	* string dataString = "01/01/1999"; 
+	  DateTime.TryParse(dataString, out DateTime result); -> pode ser alocada em variavel boolean /  pode colocar condicional 
+	  Console.WriteLine(result);
+
+
+
+ ---------------------------------------------------------- EXCESSOES/COLECOES ---------------------------------------------------
+
+ - Exceptions: recursos de manipulação de exceção da linguagem C# ajudam você a lidar com quaisquer situações excepcionais ou inesperadas 
+   que ocorram quando um programa for executado.
+
+ - Declarando Fila:
+	Queue<int> fila = new Queue<int>();
+	fila.Enqueue(2);
+	fila.Enqueue(36);
+	fila.Dequeue();  -> remove o primeiro elemento
+
+ - Declarando Pilha:
+	Stack<int> pilha = new Stack<int>();
+	pilha.Push(6);
+	pilha.Push(58);
+	pilha.Pop();
+
+ - Dictionary: coleção de chave-valor para armazenar valores únicos sem uma ordem específica. Ex:
+	Dictionary<tipoChave, tipoValor> estados = new Dictionary<tipoChave, tipoValor>(); -> tipo: string, int, bool, decimal...
+	estados.Add("SP", "Sao Paulo");
+	foreach(var item in estados){
+    		Console.WriteLine($"Chave: {item.Key}, Valor: {item.Value}");
+	}
+	estados.Remove("SP");
+
+
+
+ - Tupla: Tuplas fornece sintaxe concisa para agrupar vários elementos de dados em uma estrutura de dados leve. Colecoes, classes, etc..
+	* Ex: (int, string, string) tupla = (1, "Juliano", "Amorim")
+	       Console.WriteLine(tupla.Item2); -> Juliano
+	      (int Id, string nome, string sobrenome) tupla = (1, "Juliano", "Amorim");
+	      Console.WriteLine(tupla.nome);
+
+ - Tuplas sao utilizadas como retorno de metodos com varios tipos de dados diferentes. Ex:
+	public (bool sucesso, string[] Linhas, int qtdLinhas) LerArquivo(string caminho){
+            try{
+            	string[] linhas = File.ReadAllLines(caminho);
+            	return (true, linhas, linhas.Count());
+            }
+            catch(Exception ex){
+                return (false, new string[0], 0);
+            }
+        }
+	var (sucesso, linhasArquivo, qtdLinhas) = arquivo.LerArquivo("arquivos/leitura.txt"); -> Pega as variaveis da tupla
+
+ - Descartando variaveis da tupla: (sucesso, linhasArquivo, _) -> descarta a qtdLinhas
+
+ - Deconstruct: separa as informacoes de uma tupla/classe
+
+ - IF TERNARIO: 
+
+
+--------------------------------------------------- GERENCIAMENTO DE PACOTES/NUGET -----------------------------------------------------
+
+ *** USAR VSCODE COMO ADMNISTRADOR *** 
+
+ - Pacote: Conjunto de codigos uteis, que possibilita o compartilhamento e reuso do codigo
+
+ - Nuget: Gerenciador de pacotes para DOTNET, que permite desenvolvedores a compartilhar codigos e bibliotecas
+
+ - Todos os pacotes instalados no projeto estao listados no arquivo ".csproj"
+
+ - Serializacao de dados: Transformar objetos em fluxo de bytes p/ armazenamento ou transmissao. Uma forma de serializacao e o JSON
+
+ - Ao instalar o pacote ter permissao de admnistrador pelo VSCode ou usar o PowerShell (admin)
+
+ - Baixar o *NewtonsoftJson* no NUGET, que transforma os dados em JSON, usar o pacote como modulo. Ex:
+	List<Venda> listaVendas = new List<Venda>();
+	Venda v1 = new Venda(1, "Material de Escritorio", 25.00M);
+	listaVendas.Add(v1);
+	string serializado = JsonConvert.SerializeObject(listaVendas, Formatting.Indented);
+	File.WriteAllText("arquivos/vendas.json", serializado);
+
+ - https://codebeautify.org : Formata/diminuir tamanho de tipos diferentes de codigos (JSON, HTML, SQL)
+
+ - Deserializar JSON: Criar uma classe pegando as informacoes do arq. JSON
+	string conteudoJSON = File.ReadAllText("arquivos/vendas.json");
+	List<Venda> listaVendas = JsonConvert.DeserializeObject<List<Venda>>(conteudoJSON);
+
+ - Caso o atributo do JSON tenha nome diferente do atributo do C#, e possivel converte-lo
+	[JsonProperty("Nome_Produto")]
+        public string Produto { get; set; }
+ 
+
+---------------------------------------------------- TIPOS ESPECIAIS --------------------------------------------------------------
+
+ - Atribulto q aceita nulo: bool? desejaReceberEmail = null;
+
+ - Tipo anonimo: ornecem um modo conveniente de encapsular propriedades somente leitura
+	* var tipoAnonimo = new {Nome = "Juliano", Sobrenome = "Amorim", Altura = 1.80M};
+
+ - Variavel dinamica (dynamic): pode assumir qualquer tipo de variavel
+
+ - Classes genericas: encapsulam operações que não são específicas de um determinado tipo de dados
+	List<tipo> lista = new List<tipo>();
+	** Ex classe generica **:
+	public class MeuArray<T>
+    	{
+          private T[] array = new T[5]; -> 5: n de elementos do array
+    	}
+	public T this[int index]{  -> transforma o obj da classe no proprio array
+            get{return array[index];}
+            set{array[index]=value;}
+        }
+
+ - Metodo de extensao: Metodos static de classes staticas que podem ser usadas em qualquer atributo no programa principal
+
+
+---------------------------------------------------- TIPOS DE MEMORIA C# --------------------------------------------------------------
+
+ - Assunto de entrevistas
+
+ - Variavel: Tipo, nome, valor
+ - Variaveis tipo primitivo sao armazenadas na memoria *Stack(pilha)*, q e uma memoria estatica
+ - Variaveis de objetos passam pela memoria Stack mas sao armazenadas na memoria *Heap*, q e uma memoria dinamica
+
+ - A limpeza de memoria na mem Stack e feita em forma de Pilha
+ - Garbage Collector: Limpeza de memoria da memoria Heap que nao tem referencia na mem. Stack, desalocar memoria ram
+
+ - Tipo de valor: Uma variável de um tipo de valor contém uma instância do tipo (mem Stack)
+ - Tipo de referência: Uma variável de um tipo de referência contém uma referência a uma instância do tipo (mem Heap)
+
+ - Atribuicao de referencia: Qdo se tem dois objetos com atributos igualados (p1.atributo = p2.atributo), ambos apontam p o mesmo valor de 
+   memoria Heap, fazer isto pode causer problemas ao se mudar o valor de uma
+ - Atribuicao de valor: Dois atributos diferentes igualadas (int num2 = num1) apontam para valores de memoria diferentes
+
+
+
+------------------------------------------------- PROGRAMACAO ORIENTADA A OBJETO ----------------------------------------------------------
+
+ - POO: é um paradigma de programação, ou seja, corresponde a uma técnica de programação para um fim específico.
+   Dentro desta técnica, existem quatro pilares:
+	* Abstração
+	* Encapsulamento
+	* Herança
+	* Polimorfismo
+
+ - Heranca: Herdar atributos/metodos de outra classe.
+
+ - Nao e recomendado fazer heranca de heranca, mas e possivel
+
+ - Polimorfismo: Significa "muitas formas". Com polimorfismo podemos sobrescrever *metodos* das classes filhas de maneira diferente
+
+ - Ex:
+	*public class Pessoa*
+    	{
+	   public Pessoa(string nome){   -> Pode-se se colocar um construtor vazio tb como opcao
+            Nome = nome;
+           }
+           public string Nome { get; set; }
+           public int Idade { get; set; }
+           public virtual void Apresentar(){ -> "virtual" permite o metodo ter polimorfismo
+            Console.WriteLine($"Ola, meu nome e {Nome} e tenho {Idade} anos");
+           }
+    	}
+
+	*public class Aluno : Pessoa*    -> Aluno herda as propriedades de Pessoa
+    	{
+	   public Aluno(string nome): base (nome){}   -> Heranca de construtor
+
+           public decimal Nota { get; set; }   -> atributo especifico de Aluno
+		
+	   public override void Apresentar(){  -> Polimorfismo do metodo Apresentar()
+            Console.WriteLine($"Ola, meu nome e {Nome} e tenho {Idade} anos e sou um aluno nota {Nota}");
+           }
+    	}
+
+ - Overloading: Metodos com nomes iguais, mas com entradas diferentes. Na pratica sao considerados metodos diferentes
+
+ - Classe Abstrata: E um modelo de classe exclusivamente para ser herdada, nao pode ser instanciada. Ex: public abstract class Conta{
+	* Pode possuir metodos abstratos, que nao podem ser implementados (apenas por classes filhas). 
+	  Ex: public abstract void Creditar(decimal valor); 
+
+ - Classe Selada: Classe que nao pode ser herdada por outra. Tb pode ser usado em metodos e atributos. Usar a palavra "sealed".
+	* Ex: public sealed Professor : Pessoal{} -> Professor herda Pessoa, mas ninguem pode herdar Professor
+
+ - Classe Object: A Classe System.Object e a classe mae de todas as outras na hierarquia DOTNET. Toda classe criada em DOTNET herda varios
+   metodos da classe Object. Ex: Equals(), ToString(), GetType()
+	* No caso e necessario sobrescrever(override) o metodo ToString()
+
+ - Interface: Contrato que pode ser implementado por uma Classe, mto parecida com Classe Abstrata, seus metodos nao sao implementados.
+   A diferenca consiste na sua HERANCA, onde uma classe filha pode implementar varias INTERFACES, diferente da heranca de classes que uma classe
+   filha pode herdar apenas UMA classe pai. Ex:
+	public interface ICalculadora
+    	{
+           int Somar(int num1, int num2);   -> Metodos ñ implementados, devem ser implementados por outras classes
+           int Subtrair(int num1, int num2);   
+           int Multiplicar(int num1, int num2); 
+  
+           public int Dividir(int num1, int num2){   -> Metodo n precisa ser implementado por outra classe
+            return num1/num2;
+           }
+    	}
+
+
+--------------------------------------------------------- SQL SERVER / BANCO DE DADOS -----------------------------------------------------
+
+ - Banco de Dados: E uma colecao organizada de informacoes(dados) armazenadas em um computador, possuem sistemas de seguranca onde apenas
+   pessoas/aplicacoes autorizadas podem acessa-lo, nao pode ocorrer falhas nas requicisoes e transmissao de informacoes
+
+ - Banco de Dados Relacional: Possuem dados estruturados, organizados em tabela que se relacionam entre si. Ex: SQLSserver, Oracle, MySQL
+	* Tabela: estrutura de dados organizada em linhas e colunas
+
+ - Banco de Dados Nao Relacional: Os dados nao sao armazenados em tabelas e sim em "semi-tabelas", possuem umas estrutra menos rigida   como         key-values, document-database, graphs, JSON. Com isso se introduz e retira dados mais rapidamente, os objetos nao precisam ter as mesmas 
+   colunas ou ter colunas com o mesmo "tipo" de variavel. Ex: MongoDB
+
+ - Database Management System (DBMS): Software(Interface Grafica) usado para acesssar, manipular e monitorar um sistema de banco de dados
+
+ - Structured Query Language(SQL): Linguagem de banco de dados que possui tipos diferentes de comandos (DDL, DCL, DML, TCL, DQL[select])
+	* Recomendavel usar os comandos SQL em *CAIXA ALTA*
+
+ - Database: Colecao de dados estruturados composto de tabelas
+
+ - Built-in functions: Sao funcoes pre-existentes que auxiliam na manipulacao de dados
+
+ - Constrains: Regras para insercao de dados Ex: NOT NULL, UNIQUE, CHECK, DEFAULT, PRIMARY KEY, FOREIGN KEY
+	* Apagando Constraint: ALTER TABLE Tabela
+			       DROP CONSTRAINT NomeConstraint;
+
+ - Store Procedure: Codigos SQL salvos em scripts, podendo ser executado automaticamente, semelhante a um metodo
+	* CREATE PROCEDURE NomeProcedure
+	  @Coluna1 tipo1,
+	  @Coluna2 tipo2,
+	  @Condicao varchar(255)
+	  AS
+	  INSERT INTO Tabela(Coluna1, Coluna2)	  ou	SELECT * FROM Tabela WHERE Coluna1 = @Condicao;
+	  VALUES(@Coluna1, @Coluna2);
+
+	* Executando uma PROCEDURE
+	  EXEC NomeProcedure 'ValorColuna1', 'ValorColuna2';
+
+ - Function: Codigos do SQL q pode salvar direto no banco de dados, devem ter um retorno e entrada
+
+
+----------------------------------------------------- ECOSISTEMA DOTNET -------------------------------------------------------------
+
+ - HTTP e Stateless: Nao guarda informacoes do cliente (libera espaco)
+	* Overhead: Custo extra para realizar uma tarefa (transmitir dados)
+	* Cookies: Rastrea as informacoes do cliente (RFC 6265), estao no HeaderFile. Estados regidos pela LGPD e precisam do consentimento
+ 	  do usuario
+	* Cache: Intermediario entre o Cliente e o Servidor, chamado de Proxy Server, diminuindo o consumo de banda evitando Overhead
+
+ - WebSocket : Protocolo de comunicacao cliente/servidor executando codigo nao confiavel (Web App) em um ambiente controlado
+	* Alto overhead
+	* Mapeamento via Script
+	* Encapsulado em HTTP
+	* Handshake duas vias (syn/ syn ack)
+	* routeSelectionExpression (apenas JSON)
+	* Independente TCP
+	* Porta 443
+
+ - Comunicacao Internet: 
+	* DNS: Domain Name System
+	* Cliente <-> DNS (1º)
+	* Cliente <-> Internet <-> Servidor Apache (2º)
+
+ - FrontEnd : MVC
+
+ - API(Application Program Interface): Um software intermediario que fornece informacoes a outro software(servidor) enviadas por um cliente,
+   um BackEnd pode ser considerado uma API entre o FrontEnd e Banco de Dados
+	* Ex: Nager.Date, Dogs
+
+ - Criar uma API DOTNET: dotnet new webapi (terminal)
+ - Executar API	       : dotnet watch run 
+
+ - Os Controladores (Controllers) que executam as mudancas na API
+
+ - Ex: localhost:7188/Classe/NomeGet
+	[ApiController]
+    	[Route("[controller]")]
+    	public class ClasseController : ControllerBase  -> O nome Classe sem "Controller" aparece no caminho
+    	{
+           [HttpGet("NomeGet")]
+	   public IActionResult Metodo(int id){
+		...
+		return Ok(id);
+	   }
+	   ...
+	}
+
+ - Entity Framework: E um ORM(Object Relational Model) usado para facilitar a integracao de banco de dados com o Backend
+	* Instalacao: dotnet tool install --global dotnet-ef (ferramenta de comandos do Entity Framework)
+	* Pacotes  : dotnet add package Microsoft.EntityFrameworkCore.Design
+		     dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+
+ - Entidade: Representa os dados armazenados na aplicacao, em forma de Classe no C# e de Tabela no Banco de Dados
+	* A Classe DbContext faz a migracao a Classe dos dados em Tabela no SQLServer
+	  public class Contato
+    	  {
+        	public int Id { get; set; }
+        	public string Nome { get; set; }
+        	public string Telefone { get; set; }
+        	public bool Ativo { get; set; }
+    	  }
+
+	  public class AgendaContext : DbContext{
+        	public AgendaContext(DbContextOptions<AgendaContext> options) : base(options){}
+        	public DbSet<Contato> Contatos {get; set;}   
+    	  }
+	* Configuracao conexao JSON: "ConexaoPadrao": "Server=localhost\\sqlexpress; Initial Catalog=Agenda; Integrated Security=True; 	  encrypt=false"
+	* Em Program.cs fazer a conxeao com o DB
+	+ builder.Services.AddDbContext<AgendaContext>(options => {
+    	     options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoPadrao"));
+	  });
+	* Executando as migracoes: dotnet-ef migrations add CriacaoTabelaContato (terminal)
+				 : dotnet-ef database update
+	* Usar o _context para fazer as alteracoes no Banco de Dados via Classe Controller
+		+ private readonly AgendaContext _context;
+
+ - Arquitetura MVC : Model View Controler, separa a aplicacao em tres grupos principais.
+	* Model: Entity Framework
+	* Vier: Pagina Web
+	* Controller: Classes Controler q fazem a ligacao entre os dados do Banco de Dados mostrados na Pag Web
+	* Criar projeto: dotnet new mvc (terminal)
+	* Executar projeto: dotnet watch run 
+
+
+
+
+
+
+
+
+
+
